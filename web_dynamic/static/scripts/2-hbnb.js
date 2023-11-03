@@ -1,4 +1,4 @@
-// js script and execute dom by jquery
+// JavaScript script that is executed only when DOM is loaded by jquery
 
 let checked = {};
 
@@ -10,9 +10,9 @@ $(document).ready(function () {
 	else {
 	    delete checked[$(this).data('id')];
 	}
-
 	$('div.amenities h4').html(function () {
 	    let amenities = [];
+
 	    Object.keys(checked).forEach(function (key) {
 		amenities.push(checked[key]);
 	    });
@@ -23,4 +23,15 @@ $(document).ready(function () {
 	    return (amenities.join(', '));
 	});
     });
-});
+
+
+const apiS = $('DIV#api_status');
+
+$.ajax('http://0.0.0.0:5001/api/v1/status/').done(function (data) {
+    if (data.status === 'OK') {
+      apiS.addClass('available');
+    } else {
+      apiS.removeClass('available');
+    }
+  });
+  });
