@@ -33,8 +33,7 @@ def hbnb_fil(the_id=None):
     amenities = storage.all(Amenity).values()
     places = storage.all(Place).values()
     users = dict([user.id, "{} {}".format(user.first_name, user.last_name)]
-
-            for user in storage.all('User').values())
+                 for user in storage.all('User').values())
 
     return render_template('101-hbnb.html',
                            states=states,
